@@ -11,10 +11,8 @@ import javax.inject.Singleton
 class GitHubSearchRepository(
     private val remoteDataSource: RemoteDataSource,
 ) {
-
-    fun search(keyword: String): Flow<Resource<GitHubSearchResponse>> = {
+    fun search(keyword: String): Flow<Resource<GitHubSearchResponse>> =
         apiFlow {
-            remoteDataSource.searchRepoositories()
+            remoteDataSource.searchRepositories(keyword)
         }
-    }
 }
