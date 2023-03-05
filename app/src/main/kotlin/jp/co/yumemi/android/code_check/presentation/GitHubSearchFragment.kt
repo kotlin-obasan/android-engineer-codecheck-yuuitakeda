@@ -31,7 +31,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
         val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
             override fun itemClick(item: GitHubRepositoryInfo) {
-                gotoRepositoryFragment(item)
+                gotoGitHubDiscriptionFragment(item)
             }
         })
 
@@ -55,7 +55,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
         }
     }
 
-    fun gotoRepositoryFragment(item: GitHubRepositoryInfo) {
+    fun gotoGitHubDiscriptionFragment(item: GitHubRepositoryInfo) {
         val _action = GitHubSearchFragmentDirections
             .actionGitHubSearchFragmentToGitHubDiscriptionFragment(repositoryInfo = item)
         findNavController().navigate(_action)
