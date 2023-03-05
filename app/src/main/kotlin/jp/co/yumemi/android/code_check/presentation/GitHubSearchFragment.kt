@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,12 +21,12 @@ import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
+    private val viewModel by viewModels<GitHubSearchViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val _binding = FragmentGithubSearchBinding.bind(view)
-
-        val _viewModel = GitHubSearchViewModel(context!!)
 
         val _layoutManager = LinearLayoutManager(context!!)
 
@@ -42,7 +43,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
-                        _viewModel.searchResults(it).apply {
+                        viewModel.searchResults(it).apply {
                             _adapter.submitList(this)
                         }
                     }
