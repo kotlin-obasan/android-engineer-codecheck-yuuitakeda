@@ -24,8 +24,10 @@ class OneFragment: Fragment(R.layout.fragment_one) {
         val _viewModel = OneViewModel(context!!)
 
         val _layoutManager = LinearLayoutManager(context!!)
+
         val _dividerItemDecoration =
             DividerItemDecoration(context!!, _layoutManager.orientation)
+
         val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
             override fun itemClick(item: item){
                 gotoRepositoryFragment(item)
@@ -67,7 +69,6 @@ val diff_util = object: DiffUtil.ItemCallback<item>() {
     override fun areContentsTheSame(oldItem: item, newItem: item): Boolean {
         return oldItem == newItem
     }
-
 }
 
 class CustomAdapter(
