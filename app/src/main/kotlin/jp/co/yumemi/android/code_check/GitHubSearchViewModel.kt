@@ -28,7 +28,7 @@ class GitHubSearchViewModel(
 ) : ViewModel() {
 
     // 入力された文字列でGitHubAPI内のリポジトリを検索する
-    fun searchResults(inputText: String): List<item> = runBlocking {
+    fun searchResults(inputText: String): List<GitHubRepositoryInfo> = runBlocking {
         val client = HttpClient(Android)
 
         return@runBlocking GlobalScope.async {
@@ -41,7 +41,7 @@ class GitHubSearchViewModel(
 
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val items = mutableListOf<item>()
+            val gitHubRepositoryInfos = mutableListOf<GitHubRepositoryInfo>()
 
             // 検索結果をパースして描画用のリストに変換
             for (i in 0 until jsonItems.length()) {
@@ -54,8 +54,8 @@ class GitHubSearchViewModel(
                 val forksCount = jsonItem.optLong("forks_conut")
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
-                items.add(
-                    item(
+                gitHubRepositoryInfos.add(
+                    GitHubRepositoryInfo(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
                         language = context.getString(R.string.written_language, language),
@@ -69,13 +69,13 @@ class GitHubSearchViewModel(
 
             lastSearchDate = Date()
 
-            return@async items.toList()
+            return@async gitHubRepositoryInfos.toList()
         }.await()
     }
 }
 
 @Parcelize
-data class item(
+data class GitHubRepositoryInfo(
     val name: String,
     val ownerIconUrl: String,
     val language: String,

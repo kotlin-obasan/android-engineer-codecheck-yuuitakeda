@@ -23,7 +23,7 @@
         tools:layout="@layout/fragment_github_discription">
         <argument
             android:name="item"
-            app:argType="jp.co.yumemi.android.code_check.item" />
+            app:argType="jp.co.yumemi.android.code_check.GitHubRepositoryInfo" />
     </fragment>
 
 </navigation>
