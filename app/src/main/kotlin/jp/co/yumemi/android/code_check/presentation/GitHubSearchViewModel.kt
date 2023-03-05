@@ -5,6 +5,7 @@ package jp.co.yumemi.android.code_check
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
@@ -22,6 +23,7 @@ import java.util.*
  * GitHubSearchViewModel
  * GitHubSearchFragmentに描画する情報を保持するViewModel
  */
+@HiltViewModel
 class GitHubSearchViewModel(
     val context: Context
 ) : ViewModel() {
