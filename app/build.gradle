@@ -12,6 +12,7 @@ android {
     defaultConfig {
         applicationId "jp.co.yumemi.android.codecheck"
         minSdk 23
+        // caution: targetSDKのバージョン指定のため変更しないこと
         targetSdk 31
         versionCode 1
         versionName "1.0"
