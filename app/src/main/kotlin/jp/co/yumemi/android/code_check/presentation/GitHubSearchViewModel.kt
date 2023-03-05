@@ -5,6 +5,7 @@ package jp.co.yumemi.android.code_check.presentation
 
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,12 +16,11 @@ import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import jp.co.yumemi.android.code_check.R
+import jp.co.yumemi.android.code_check.data.Resource
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
+import jp.co.yumemi.android.code_check.data.repository.GitHubSearchRepository
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import org.json.JSONObject
 import java.util.*
 import javax.inject.Inject
@@ -33,13 +33,24 @@ import javax.inject.Inject
 class GitHubSearchViewModel @Inject constructor(
     @ApplicationContext
     private val context: Context,
+    private val gitHubSearchRepository: GitHubSearchRepository
 ): ViewModel() {
+
+    // API呼び出しが完了したかどうか見るFLG
+    val isCompletedAPICall = MutableLiveData<Boolean>()
 
     // 入力された文字列でGitHubAPI内のリポジトリを検索する
     fun searchRepositories(keyword: String) {
 
-        viewModelScope.launch {
+        isCompletedAPICall.value = false
 
+        // 新しいコルーチンをUIスレッド上に作成する
+        viewModelScope.launch {
+//            val result = gitHubSearchRepository.search(keyword)
+//
+//            when (result) {
+//                is Resource.Success<>
+//            }
         }
     }
 

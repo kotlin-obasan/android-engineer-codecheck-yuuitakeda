@@ -43,6 +43,10 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
+                        //todo: リポジトリを検索する
+                        viewModel.searchRepositories(it)
+
+                        //todo: あとで消す
                         viewModel.searchResults(it).apply {
                             _adapter.submitList(this)
                         }
