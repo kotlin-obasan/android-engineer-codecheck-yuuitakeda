@@ -27,7 +27,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
 
         binding = FragmentGithubDiscriptionBinding.bind(view)
 
-        var item = args.item
+        var item = args.repositoryInfo
 
         _binding.ownerIconView.load(item.ownerIconUrl)
         _binding.nameView.text = item.name

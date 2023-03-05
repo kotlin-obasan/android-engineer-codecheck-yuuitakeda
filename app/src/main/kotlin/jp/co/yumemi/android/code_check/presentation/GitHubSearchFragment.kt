@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
+import jp.co.yumemi.android.code_check.data.source.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
@@ -56,7 +57,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
     fun gotoRepositoryFragment(item: GitHubRepositoryInfo) {
         val _action = GitHubSearchFragmentDirections
-            .actionGitHubSearchFragmentToGitHubDiscriptionFragment(item = item)
+            .actionGitHubSearchFragmentToGitHubDiscriptionFragment(repositoryInfo = item)
         findNavController().navigate(_action)
     }
 }
