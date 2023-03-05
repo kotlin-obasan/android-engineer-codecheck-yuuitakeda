@@ -55,7 +55,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
     }
 
     fun gotoRepositoryFragment(item: item) {
-        val _action = OneFragmentDirections
+        val _action = GitHubSearchFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(item = item)
         findNavController().navigate(_action)
     }
