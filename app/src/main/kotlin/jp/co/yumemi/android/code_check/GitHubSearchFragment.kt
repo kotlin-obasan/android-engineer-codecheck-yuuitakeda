@@ -83,7 +83,7 @@ class CustomAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
     	val _view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item, parent, false)
+            .inflate(R.layout.layout_github_list_item, parent, false)
     	return ViewHolder(_view)
     }
 
