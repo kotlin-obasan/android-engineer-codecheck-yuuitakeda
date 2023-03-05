@@ -12,9 +12,11 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
+import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 
+@AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

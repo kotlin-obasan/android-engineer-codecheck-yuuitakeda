@@ -9,10 +9,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
+import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDiscriptionBinding
 
+@AndroidEntryPoint
 class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription) {
 
     private val args: GitHubDiscriptionFragmentArgs by navArgs()
