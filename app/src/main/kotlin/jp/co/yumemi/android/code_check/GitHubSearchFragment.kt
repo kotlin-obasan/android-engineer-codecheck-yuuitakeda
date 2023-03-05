@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 
-class OneFragment: Fragment(R.layout.fragment_github_search) {
+class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
