@@ -1,17 +1,15 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check.presentation
+package jp.co.yumemi.android.code_check
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
@@ -24,7 +22,6 @@ import java.util.*
  * GitHubSearchViewModel
  * GitHubSearchFragmentに描画する情報を保持するViewModel
  */
-@HiltViewModel
 class GitHubSearchViewModel(
     val context: Context
 ) : ViewModel() {
