@@ -10,7 +10,7 @@ import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import jp.co.yumemi.android.code_check.data.source.GitHubRepositoryInfo
+import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
