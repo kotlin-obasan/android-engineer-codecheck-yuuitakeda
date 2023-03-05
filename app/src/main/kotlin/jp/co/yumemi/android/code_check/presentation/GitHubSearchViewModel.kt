@@ -21,6 +21,7 @@ import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.data.repository.GitHubSearchRepository
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collectLatest
 import org.json.JSONObject
 import java.util.*
 import javax.inject.Inject
@@ -46,11 +47,18 @@ class GitHubSearchViewModel @Inject constructor(
 
         // 新しいコルーチンをUIスレッド上に作成する
         viewModelScope.launch {
-//            val result = gitHubSearchRepository.search(keyword)
-//
-//            when (result) {
-//                is Resource.Success<>
-//            }
+            val result = gitHubSearchRepository.search(keyword).collectLatest { result ->
+                when(result) {
+                    is Resource.Success -> {
+
+                    }
+                    is Resource.DataError -> {
+                    }
+                }
+
+                isCompletedAPICall.value = true
+
+            }
         }
     }
 
