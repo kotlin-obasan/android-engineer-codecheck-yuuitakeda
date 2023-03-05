@@ -12,14 +12,14 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
-import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
+import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 
-class OneFragment: Fragment(R.layout.fragment_one) {
+class OneFragment: Fragment(R.layout.fragment_github_search) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _binding = FragmentOneBinding.bind(view)
+        val _binding = FragmentGithubSearchBinding.bind(view)
 
         val _viewModel = OneViewModel(context!!)
 
