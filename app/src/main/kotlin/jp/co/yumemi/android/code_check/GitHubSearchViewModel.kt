@@ -20,13 +20,14 @@ import org.json.JSONObject
 import java.util.*
 
 /**
- * TwoFragment で使う
+ * GitHubSearchViewModel
+ * GitHubSearchFragmentに描画する情報を保持するViewModel
  */
 class GitHubSearchViewModel(
     val context: Context
 ) : ViewModel() {
 
-    // 検索結果
+    // 入力された文字列でGitHubAPI内のリポジトリを検索する
     fun searchResults(inputText: String): List<item> = runBlocking {
         val client = HttpClient(Android)
 
@@ -42,9 +43,7 @@ class GitHubSearchViewModel(
 
             val items = mutableListOf<item>()
 
-            /**
-             * アイテムの個数分ループする
-             */
+            // 検索結果をパースして描画用のリストに変換
             for (i in 0 until jsonItems.length()) {
                 val jsonItem = jsonItems.optJSONObject(i)!!
                 val name = jsonItem.optString("full_name")
