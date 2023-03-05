@@ -31,7 +31,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
 
         var item = args.repositoryInfo
 
-        _binding.ownerIconView.load(item.ownerIconUrl)
+        _binding.ownerIconView.load(item.owner.ownerIconUrl)
         _binding.nameView.text = item.name
         _binding.languageView.text = item.language
         _binding.starsView.text = "${item.stargazersCount} stars"
