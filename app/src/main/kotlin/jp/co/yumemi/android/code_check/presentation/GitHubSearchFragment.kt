@@ -30,7 +30,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             DividerItemDecoration(context!!, _layoutManager.orientation)
 
         val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
-            override fun itemClick(item: GitHubRepositoryInfo){
+            override fun itemClick(item: GitHubRepositoryInfo) {
                 gotoRepositoryFragment(item)
             }
         })
