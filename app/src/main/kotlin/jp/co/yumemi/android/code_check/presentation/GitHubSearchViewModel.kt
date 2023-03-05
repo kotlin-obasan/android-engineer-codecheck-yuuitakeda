@@ -5,6 +5,7 @@ package jp.co.yumemi.android.code_check
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -15,6 +16,7 @@ import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.*
@@ -29,6 +31,13 @@ class GitHubSearchViewModel(
 ) : ViewModel() {
 
     // 入力された文字列でGitHubAPI内のリポジトリを検索する
+    fun searchRepositories(keyword: String) {
+
+        viewModelScope.launch {
+
+        }
+    }
+
     fun searchResults(inputText: String): List<GitHubRepositoryInfo> = runBlocking {
         val client = HttpClient(Android)
 
