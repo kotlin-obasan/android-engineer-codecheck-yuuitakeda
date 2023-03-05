@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/apk/res-auto"
     xmlns:tools2="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
+    android:label="@string/app_name"
     app:startDestination="@id/gitHubSearchFragment">
 
     <fragment
@@ -15,15 +16,13 @@
             android:id="@+id/action_gitHubSearchFragment_to_gitHubDiscriptionFragment"
             app:destination="@id/gitHubDiscriptionFragment" />
     </fragment>
-
     <fragment
         android:id="@+id/gitHubDiscriptionFragment"
-        android:name="jp.co.yumemi.android.code_check.GitHubDiscriptionFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_github_discription">
+        android:name="jp.co.yumemi.android.code_check.presentation.GitHubDiscriptionFragment"
+        android:label="GitHubDiscriptionFragment">
         <argument
-            android:name="item"
-            app:argType="jp.co.yumemi.android.code_check.GitHubRepositoryInfo" />
-    </fragment>
+            android:name="repositoryInfo"
+            app:argType="jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo" />
 
+    </fragment>
 </navigation>

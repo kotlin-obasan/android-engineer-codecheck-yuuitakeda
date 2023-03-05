@@ -4,18 +4,17 @@
 package jp.co.yumemi.android.code_check
 
 import android.content.Context
-import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
-import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
+import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
+import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
-import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
 import java.util.*
 
@@ -73,14 +72,3 @@ class GitHubSearchViewModel(
         }.await()
     }
 }
-
-@Parcelize
-data class GitHubRepositoryInfo(
-    val name: String,
-    val ownerIconUrl: String,
-    val language: String,
-    val stargazersCount: Long,
-    val watchersCount: Long,
-    val forksCount: Long,
-    val openIssuesCount: Long,
-) : Parcelable

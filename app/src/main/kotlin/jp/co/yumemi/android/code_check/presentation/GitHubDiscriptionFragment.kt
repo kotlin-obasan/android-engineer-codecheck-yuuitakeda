@@ -1,7 +1,7 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check
+package jp.co.yumemi.android.code_check.presentation
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
-import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
+import jp.co.yumemi.android.code_check.R
+import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDiscriptionBinding
 
 class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription) {
@@ -26,7 +27,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
 
         binding = FragmentGithubDiscriptionBinding.bind(view)
 
-        var item = args.item
+        var item = args.repositoryInfo
 
         _binding.ownerIconView.load(item.ownerIconUrl)
         _binding.nameView.text = item.name
