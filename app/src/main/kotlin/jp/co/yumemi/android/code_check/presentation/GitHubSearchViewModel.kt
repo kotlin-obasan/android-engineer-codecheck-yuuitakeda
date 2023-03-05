@@ -1,17 +1,20 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check
+package jp.co.yumemi.android.code_check.presentation
 
 import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
+import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import kotlinx.coroutines.GlobalScope
@@ -20,15 +23,17 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.json.JSONObject
 import java.util.*
+import javax.inject.Inject
 
 /**
  * GitHubSearchViewModel
  * GitHubSearchFragmentに描画する情報を保持するViewModel
  */
 @HiltViewModel
-class GitHubSearchViewModel(
-    val context: Context
-) : ViewModel() {
+class GitHubSearchViewModel @Inject constructor(
+    @ApplicationContext
+    private val context: Context,
+): ViewModel() {
 
     // 入力された文字列でGitHubAPI内のリポジトリを検索する
     fun searchRepositories(keyword: String) {

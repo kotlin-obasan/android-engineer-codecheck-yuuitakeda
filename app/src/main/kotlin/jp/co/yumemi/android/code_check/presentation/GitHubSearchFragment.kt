@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.*
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
+import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
