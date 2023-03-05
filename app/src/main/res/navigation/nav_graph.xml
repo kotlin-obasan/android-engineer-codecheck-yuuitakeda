@@ -9,7 +9,7 @@
 
     <fragment
         android:id="@+id/gitHubSearchFragment"
-        android:name="jp.co.yumemi.android.code_check.GitHubSearchFragment"
+        android:name="jp.co.yumemi.android.code_check.presentation.GitHubSearchFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_github_search">
         <action
