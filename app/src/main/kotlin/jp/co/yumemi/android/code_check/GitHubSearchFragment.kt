@@ -21,7 +21,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
         val _binding = FragmentGithubSearchBinding.bind(view)
 
-        val _viewModel = OneViewModel(context!!)
+        val _viewModel = GitHubSearchViewModel(context!!)
 
         val _layoutManager = LinearLayoutManager(context!!)
 
