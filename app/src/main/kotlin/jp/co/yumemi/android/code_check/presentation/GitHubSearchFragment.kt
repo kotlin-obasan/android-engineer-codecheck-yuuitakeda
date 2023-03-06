@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import dagger.hilt.android.AndroidEntryPoint
+import jp.co.yumemi.android.code_check.data.Resource
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
@@ -45,11 +46,6 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                     editText.text.toString().let {
                         //todo: リポジトリを検索する
                         viewModel.searchRepositories(it)
-
-                        //todo: あとで消す
-                        viewModel.searchResults(it).apply {
-                            _adapter.submitList(this)
-                        }
                     }
                     return@setOnEditorActionListener true
                 }
@@ -60,6 +56,19 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             it.layoutManager = _layoutManager
             it.addItemDecoration(_dividerItemDecoration)
             it.adapter = _adapter
+        }
+
+        viewModel.gitHubRepositories.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    it.data?.let { response ->
+                        _adapter.submitList(response.items)
+                    }
+                }
+                is Resource.DataError -> {}
+
+            }
         }
     }
 

@@ -1,6 +1,5 @@
 package jp.co.yumemi.android.code_check.data.source
 
-import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.data.dto.GitHubSearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
