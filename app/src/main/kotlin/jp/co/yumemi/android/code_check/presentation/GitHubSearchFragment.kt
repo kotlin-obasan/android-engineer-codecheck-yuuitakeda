@@ -29,10 +29,10 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
         val _binding = FragmentGithubSearchBinding.bind(view)
 
-        val _layoutManager = LinearLayoutManager(context!!)
+        val _layoutManager = LinearLayoutManager(requireContext())
 
         val _dividerItemDecoration =
-            DividerItemDecoration(context!!, _layoutManager.orientation)
+            DividerItemDecoration(requireContext(), _layoutManager.orientation)
 
         val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
             override fun itemClick(item: GitHubRepositoryInfo) {
