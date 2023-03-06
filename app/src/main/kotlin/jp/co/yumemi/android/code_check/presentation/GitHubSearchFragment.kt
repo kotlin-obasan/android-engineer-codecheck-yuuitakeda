@@ -80,11 +80,13 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 }
 
 val diff_util = object: DiffUtil.ItemCallback<GitHubRepositoryInfo>() {
-    override fun areItemsTheSame(oldItem: GitHubRepositoryInfo, newItem: GitHubRepositoryInfo): Boolean {
+    override fun areItemsTheSame(oldItem: GitHubRepositoryInfo,
+                                 newItem: GitHubRepositoryInfo): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: GitHubRepositoryInfo, newItem: GitHubRepositoryInfo): Boolean {
+    override fun areContentsTheSame(oldItem: GitHubRepositoryInfo,
+                                    newItem: GitHubRepositoryInfo): Boolean {
         return oldItem == newItem
     }
 }
@@ -106,7 +108,7 @@ class CustomAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    	val _item= getItem(position)
+    	val _item = getItem(position)
         (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
             _item.name
 
