@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_gitHubSearchFragment_to_gitHubDiscriptionFragment"
             app:destination="@id/gitHubDiscriptionFragment" />
+        <action
+            android:id="@+id/action_gitHubSearchFragment_to_commonErrorDialogFragment"
+            app:destination="@id/commonErrorDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/gitHubDiscriptionFragment"
@@ -25,4 +28,9 @@
             app:argType="jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo" />
 
     </fragment>
+    <dialog
+        android:id="@+id/commonErrorDialogFragment"
+        android:name="jp.co.yumemi.android.code_check.presentation.CommonErrorDialogFragment"
+        android:label="dialog_common_error"
+        tools2:layout="@layout/dialog_common_error" />
 </navigation>
