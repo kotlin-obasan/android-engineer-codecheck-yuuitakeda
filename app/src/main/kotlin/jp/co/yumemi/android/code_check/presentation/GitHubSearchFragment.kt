@@ -65,11 +65,11 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                 is Resource.Success -> {
                     it.data?.let { response ->
                         _adapter.submitList(response.items)
-                        showErrorDialog()
                     }
                 }
                 is Resource.DataError -> {
                     //todo: エラーダイアログ表示
+                    showErrorDialog()
                 }
 
             }
@@ -83,7 +83,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
         findNavController().navigate(_action)
     }
 
-    fun showErrorDialog() {
+    private fun showErrorDialog() {
         val _action = GitHubSearchFragmentDirections
             .actionGitHubSearchFragmentToCommonErrorDialogFragment()
         findNavController().navigate(_action)
