@@ -4,6 +4,7 @@
 package jp.co.yumemi.android.code_check
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
-                        //todo: リポジトリを検索する
+                        // GitHubリポジトリ検索
                         viewModel.searchRepositories(it)
                     }
                     return@setOnEditorActionListener true
@@ -66,7 +67,9 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                         _adapter.submitList(response.items)
                     }
                 }
-                is Resource.DataError -> {}
+                is Resource.DataError -> {
+                    //todo: エラーダイアログ表示
+                }
 
             }
         }
@@ -75,6 +78,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
     fun gotoGitHubDiscriptionFragment(item: GitHubRepositoryInfo) {
         val _action = GitHubSearchFragmentDirections
             .actionGitHubSearchFragmentToGitHubDiscriptionFragment(repositoryInfo = item)
+        Log.d("GitHubRepositoryInfo", item.toString())
         findNavController().navigate(_action)
     }
 }
