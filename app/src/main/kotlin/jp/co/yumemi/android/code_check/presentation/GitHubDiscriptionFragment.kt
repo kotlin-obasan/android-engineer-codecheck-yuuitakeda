@@ -9,10 +9,12 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
+import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDiscriptionBinding
 
+@AndroidEntryPoint
 class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription) {
 
     private val args: GitHubDiscriptionFragmentArgs by navArgs()
@@ -29,7 +31,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
 
         var item = args.repositoryInfo
 
-        _binding.ownerIconView.load(item.ownerIconUrl)
+        _binding.ownerIconView.load(item.owner.ownerIconUrl)
         _binding.nameView.text = item.name
         _binding.languageView.text = item.language
         _binding.starsView.text = "${item.stargazersCount} stars"

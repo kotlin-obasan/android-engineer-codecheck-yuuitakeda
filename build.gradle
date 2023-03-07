@@ -5,13 +5,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        // caution: Kotlinバージョン指定のため変更しないこと
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5"
-
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.3"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.40.5"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.6.20' apply false
 }
 
 task clean(type: Delete) {
