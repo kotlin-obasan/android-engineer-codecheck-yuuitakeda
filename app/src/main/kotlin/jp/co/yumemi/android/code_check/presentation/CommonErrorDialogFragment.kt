@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.DialogCommonErrorBinding
 
@@ -20,7 +21,7 @@ class CommonErrorDialogFragment : DialogFragment() {
         val binding = DialogCommonErrorBinding.inflate(inflate, null)
 
         binding.buttonClose.setOnClickListener {
-            this.dismiss()
+            findNavController().navigateUp()
         }
 
         this.isCancelable = false
@@ -47,6 +48,6 @@ class CommonErrorDialogFragment : DialogFragment() {
     //画面が閉じられたら消す
     override fun onPause() {
         super.onPause()
-        dismiss()
+        findNavController().navigateUp()
     }
 }
