@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/apk/res-auto"
     xmlns:tools2="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     android:label="@string/app_name"
@@ -11,7 +10,7 @@
         android:id="@+id/gitHubSearchFragment"
         android:name="jp.co.yumemi.android.code_check.GitHubSearchFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_github_search">
+        tools2:layout="@layout/fragment_github_search">
         <action
             android:id="@+id/action_gitHubSearchFragment_to_gitHubDiscriptionFragment"
             app:destination="@id/gitHubDiscriptionFragment" />
@@ -22,10 +21,11 @@
     <fragment
         android:id="@+id/gitHubDiscriptionFragment"
         android:name="jp.co.yumemi.android.code_check.presentation.GitHubDiscriptionFragment"
-        android:label="GitHubDiscriptionFragment">
-        <argument
-            android:name="repositoryInfo"
-            app:argType="jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo" />
+        android:label="GitHubDiscriptionFragment"
+        tools2:layout="@layout/fragment_github_discription">
+<!--        <argument-->
+<!--            android:name="repositoryInfo"-->
+<!--            app:argType="jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo" />-->
 
     </fragment>
     <dialog
