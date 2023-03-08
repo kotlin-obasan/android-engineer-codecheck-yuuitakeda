@@ -11,6 +11,16 @@ import java.util.*
 @AndroidEntryPoint
 class TopActivity : AppCompatActivity(R.layout.activity_top) {
 
+    private val progressDialog = ProgressDialog()
+
+    fun showProgressDialog() {
+        progressDialog.show(supportFragmentManager, "TAG")
+    }
+
+    fun hideProgressDialog() {
+        progressDialog.dismiss()
+    }
+
     companion object {
         lateinit var lastSearchDate: Date
     }

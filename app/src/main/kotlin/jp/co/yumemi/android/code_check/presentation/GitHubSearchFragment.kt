@@ -20,6 +20,7 @@ import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.data.dto.RepositoryDescriptionData
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
+import jp.co.yumemi.android.code_check.presentation.TopActivity
 
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
@@ -46,6 +47,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
+                        (requireActivity() as TopActivity).showProgressDialog()
                         // GitHubリポジトリ検索
                         viewModel.searchRepositories(it)
                     }
@@ -62,14 +64,18 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
         viewModel.gitHubRepositories.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    (requireActivity() as TopActivity).showProgressDialog()
+                }
                 is Resource.Success -> {
+                    (requireActivity() as TopActivity).hideProgressDialog()
                     it.data?.let { response ->
                         Log.d("response", response.toString())
                         _adapter.submitList(response.items)
                     }
                 }
                 is Resource.DataError -> {
+                    (requireActivity() as TopActivity).hideProgressDialog()
                     //todo: エラーダイアログ表示
                     showErrorDialog()
                 }
