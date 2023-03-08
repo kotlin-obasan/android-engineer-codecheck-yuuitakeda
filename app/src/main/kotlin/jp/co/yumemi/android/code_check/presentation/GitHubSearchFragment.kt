@@ -99,7 +99,8 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             item.stargazersCount,
             item.watchersCount,
             item.forksCount,
-            item.openIssuesCount
+            item.openIssuesCount,
+            item.htmlUrl
         )
     }
 

@@ -3,9 +3,12 @@
  */
 package jp.co.yumemi.android.code_check.presentation
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import coil.load
@@ -37,6 +40,9 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         } ?: _binding.ownerIconView.load(R.drawable.github_mark)
 
         _binding.nameView.text = item.name
+        _binding.nameView.setOnClickListener {
+            navigateToCustomTab(item.htmlUrl)
+        }
 
         //languageにはnullが入ることがあるので
         var language = "No Language"
@@ -49,5 +55,16 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         _binding.watchersView.text = "${item.watchersCount} watchers"
         _binding.forksView.text = "${item.forksCount} forks"
         _binding.openIssuesView.text = "${item.openIssuesCount} open issues"
+    }
+
+    // ブラウザでURLを開く
+    fun navigateToCustomTab(url: String) {
+        val uri = Uri.parse(url)
+        CustomTabsIntent.Builder().also { builder ->
+            builder.setShowTitle(true)
+            builder.build().also {
+                it.launchUrl(requireContext(), uri)
+            }
+        }
     }
 }
