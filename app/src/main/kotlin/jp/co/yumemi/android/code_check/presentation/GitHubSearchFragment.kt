@@ -19,6 +19,7 @@ import jp.co.yumemi.android.code_check.data.Resource
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.data.dto.RepositoryDescriptionData
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
+import jp.co.yumemi.android.code_check.extension.hideKeyboard
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 import jp.co.yumemi.android.code_check.presentation.TopActivity
 
@@ -47,9 +48,12 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
+                        hideKeyboard()
                         (requireActivity() as TopActivity).showProgressDialog()
+
                         // GitHubリポジトリ検索
                         viewModel.searchRepositories(it)
+
                     }
                     return@setOnEditorActionListener true
                 }
