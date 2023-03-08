@@ -41,7 +41,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         //languageにはnullが入ることがあるので
         var language = "No Language"
         item.language?.let {
-            language = it
+            language = "Written in $it"
         }
         _binding.languageView.text = language
 
