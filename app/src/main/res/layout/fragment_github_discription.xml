@@ -105,5 +105,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/centerGuid"
         app:layout_constraintTop_toBottomOf="@id/forksView" />
-
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_open_custom_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        app:cornerRadius="8dp"
+        android:text="@string/open_tab"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openIssuesView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

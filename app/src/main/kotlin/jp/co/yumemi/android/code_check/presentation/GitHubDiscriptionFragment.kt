@@ -40,7 +40,8 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         } ?: _binding.ownerIconView.load(R.drawable.github_mark)
 
         _binding.nameView.text = item.name
-        _binding.nameView.setOnClickListener {
+
+        _binding.buttonOpenCustomTab.setOnClickListener {
             navigateToCustomTab(item.htmlUrl)
         }
 
