@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +23,7 @@ import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 import jp.co.yumemi.android.code_check.extension.hideKeyboard
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 import jp.co.yumemi.android.code_check.presentation.TopActivity
+import jp.co.yumemi.android.code_check.util.GlideApp
 
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
@@ -147,6 +149,8 @@ class CustomAdapter(
     	val _item = getItem(position)
         (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
             _item.name
+        val iconView = holder.itemView.findViewById<ImageView>(R.id.ownerIconView)
+        GlideApp.with(holder.itemView.context).load(_item.owner.ownerIconUrl).circleCrop().into(iconView)
 
     	holder.itemView.setOnClickListener {
      		itemClickListener.itemClick(_item)
