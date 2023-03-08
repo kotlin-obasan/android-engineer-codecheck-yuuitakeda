@@ -25,6 +25,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //todo: ViewModelに値を持つ
 //        Log.d("検索した日時", lastSearchDate.toString())
 
         binding = FragmentGithubDiscriptionBinding.bind(view)
@@ -48,9 +49,5 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         _binding.watchersView.text = "${item.watchersCount} watchers"
         _binding.forksView.text = "${item.forksCount} forks"
         _binding.openIssuesView.text = "${item.openIssuesCount} open issues"
-    }
-
-    fun getLanguageText() {
-
     }
 }
