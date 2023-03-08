@@ -1,7 +1,7 @@
 package jp.co.yumemi.android.code_check.di
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +11,7 @@ import jp.co.yumemi.android.code_check.data.source.RemoteDataSource
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -21,12 +21,14 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideApi(retrofit: Retrofit): RemoteDataSource = retrofit.create(
+    fun provideRemoteDataSource(retrofit: Retrofit): RemoteDataSource = retrofit.create(
         RemoteDataSource::class.java)
 
     @Singleton
     @Provides
-    fun provideGson(): Gson = GsonBuilder().create()
+    fun provideMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Singleton
     @Provides
@@ -51,10 +53,10 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit =
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
         Retrofit.Builder()
             .baseUrl(BuildConfig.API_BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 }

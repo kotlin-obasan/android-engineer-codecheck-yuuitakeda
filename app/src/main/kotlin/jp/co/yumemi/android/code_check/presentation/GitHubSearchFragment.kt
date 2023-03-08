@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.*
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.data.Resource
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
+import jp.co.yumemi.android.code_check.data.dto.RepositoryDescriptionData
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 
@@ -64,21 +65,42 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                 is Resource.Loading -> {}
                 is Resource.Success -> {
                     it.data?.let { response ->
+                        Log.d("response", response.toString())
                         _adapter.submitList(response.items)
                     }
                 }
                 is Resource.DataError -> {
                     //todo: エラーダイアログ表示
+                    showErrorDialog()
                 }
 
             }
         }
     }
 
+    private fun translateRepositoryInfo(item: GitHubRepositoryInfo) : RepositoryDescriptionData {
+        Log.d("GitHubRepositoryInfo" , item.toString())
+        return RepositoryDescriptionData(
+            item.owner.ownerIconUrl,
+            item.name,
+            item.language,
+            item.stargazersCount,
+            item.watchersCount,
+            item.forksCount,
+            item.openIssuesCount
+        )
+    }
+
     fun gotoGitHubDiscriptionFragment(item: GitHubRepositoryInfo) {
         val _action = GitHubSearchFragmentDirections
-            .actionGitHubSearchFragmentToGitHubDiscriptionFragment(repositoryInfo = item)
+            .actionGitHubSearchFragmentToGitHubDiscriptionFragment(translateRepositoryInfo(item))
         Log.d("GitHubRepositoryInfo", item.toString())
+        findNavController().navigate(_action)
+    }
+
+    private fun showErrorDialog() {
+        val _action = GitHubSearchFragmentDirections
+            .actionGitHubSearchFragmentToCommonErrorDialogFragment()
         findNavController().navigate(_action)
     }
 }

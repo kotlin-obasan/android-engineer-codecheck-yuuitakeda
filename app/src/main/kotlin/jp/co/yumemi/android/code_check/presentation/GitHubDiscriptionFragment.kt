@@ -25,15 +25,26 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("検索した日時", lastSearchDate.toString())
+        //todo: ViewModelに値を持つ
+//        Log.d("検索した日時", lastSearchDate.toString())
 
         binding = FragmentGithubDiscriptionBinding.bind(view)
 
-        var item = args.repositoryInfo
+        val item = args.item
 
-        _binding.ownerIconView.load(item.owner.ownerIconUrl)
+        item.ownerIconUrl?.let {
+            _binding.ownerIconView.load(it)
+        } ?: _binding.ownerIconView.load(R.drawable.github_mark)
+
         _binding.nameView.text = item.name
-        _binding.languageView.text = item.language
+
+        //languageにはnullが入ることがあるので
+        var language = "No Language"
+        item.language?.let {
+            language = it
+        }
+        _binding.languageView.text = language
+
         _binding.starsView.text = "${item.stargazersCount} stars"
         _binding.watchersView.text = "${item.watchersCount} watchers"
         _binding.forksView.text = "${item.forksCount} forks"
