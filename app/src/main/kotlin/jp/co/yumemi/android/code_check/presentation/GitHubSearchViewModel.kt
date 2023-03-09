@@ -34,8 +34,6 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class GitHubSearchViewModel @Inject constructor(
-    @ApplicationContext
-    private val context: Context,
     private val gitHubSearchRepository: GitHubSearchRepository
 ): ViewModel() {
 
