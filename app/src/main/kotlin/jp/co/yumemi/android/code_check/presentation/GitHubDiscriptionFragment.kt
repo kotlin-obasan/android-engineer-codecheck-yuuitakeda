@@ -3,10 +3,8 @@
  */
 package jp.co.yumemi.android.code_check.presentation
 
-import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
@@ -14,7 +12,6 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.presentation.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDiscriptionBinding
 
 @AndroidEntryPoint
@@ -59,7 +56,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
     }
 
     // ブラウザでURLを開く
-    fun navigateToCustomTab(url: String) {
+    private fun navigateToCustomTab(url: String) {
         val uri = Uri.parse(url)
         CustomTabsIntent.Builder().also { builder ->
             builder.setShowTitle(true)
