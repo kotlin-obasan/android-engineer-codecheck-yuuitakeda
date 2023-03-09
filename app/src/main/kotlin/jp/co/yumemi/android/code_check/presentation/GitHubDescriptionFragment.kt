@@ -6,7 +6,6 @@ package jp.co.yumemi.android.code_check.presentation
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -37,7 +36,7 @@ class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description)
         item.ownerIconUrl?.let {
             GlideApp.with(requireContext()).load(it).circleCrop().into(_binding.ownerIconView)
         } ?: _binding.ownerIconView.load(R.drawable.github_mark)
-        
+
         _binding.nameView.text = item.name
 
         _binding.buttonOpenCustomTab.setOnClickListener {
