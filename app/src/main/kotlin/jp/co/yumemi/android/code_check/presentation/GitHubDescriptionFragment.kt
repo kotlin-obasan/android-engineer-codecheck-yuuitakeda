@@ -12,14 +12,14 @@ import androidx.navigation.fragment.navArgs
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.databinding.FragmentGithubDiscriptionBinding
+import jp.co.yumemi.android.code_check.databinding.FragmentGithubDescriptionBinding
 
 @AndroidEntryPoint
-class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription) {
+class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
 
-    private val args: GitHubDiscriptionFragmentArgs by navArgs()
+    private val args: GitHubDescriptionFragmentArgs by navArgs()
 
-    private var binding: FragmentGithubDiscriptionBinding? = null
+    private var binding: FragmentGithubDescriptionBinding? = null
     private val _binding get() = binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class GitHubDiscriptionFragment : Fragment(R.layout.fragment_github_discription)
         //todo: ViewModelに値を持つ
 //        Log.d("検索した日時", lastSearchDate.toString())
 
-        binding = FragmentGithubDiscriptionBinding.bind(view)
+        binding = FragmentGithubDescriptionBinding.bind(view)
 
         val item = args.item
 
