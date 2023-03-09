@@ -6,6 +6,7 @@ package jp.co.yumemi.android.code_check.presentation
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -13,6 +14,7 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDescriptionBinding
+import jp.co.yumemi.android.code_check.util.GlideApp
 
 @AndroidEntryPoint
 class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
@@ -33,9 +35,9 @@ class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description)
         val item = args.item
 
         item.ownerIconUrl?.let {
-            _binding.ownerIconView.load(it)
+            GlideApp.with(requireContext()).load(it).circleCrop().into(_binding.ownerIconView)
         } ?: _binding.ownerIconView.load(R.drawable.github_mark)
-
+        
         _binding.nameView.text = item.name
 
         _binding.buttonOpenCustomTab.setOnClickListener {
