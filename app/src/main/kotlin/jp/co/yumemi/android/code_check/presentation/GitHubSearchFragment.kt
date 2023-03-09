@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,7 +20,10 @@ import jp.co.yumemi.android.code_check.data.Resource
 import jp.co.yumemi.android.code_check.data.dto.GitHubRepositoryInfo
 import jp.co.yumemi.android.code_check.data.dto.RepositoryDescriptionData
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubSearchBinding
+import jp.co.yumemi.android.code_check.extension.hideKeyboard
 import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
+import jp.co.yumemi.android.code_check.presentation.TopActivity
+import jp.co.yumemi.android.code_check.util.GlideApp
 
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
@@ -46,8 +50,12 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
+                        hideKeyboard()
+                        (requireActivity() as TopActivity).showProgressDialog()
+
                         // GitHubリポジトリ検索
                         viewModel.searchRepositories(it)
+
                     }
                     return@setOnEditorActionListener true
                 }
@@ -62,14 +70,18 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
         viewModel.gitHubRepositories.observe(viewLifecycleOwner) {
             when (it) {
-                is Resource.Loading -> {}
+                is Resource.Loading -> {
+                    (requireActivity() as TopActivity).showProgressDialog()
+                }
                 is Resource.Success -> {
+                    (requireActivity() as TopActivity).hideProgressDialog()
                     it.data?.let { response ->
                         Log.d("response", response.toString())
                         _adapter.submitList(response.items)
                     }
                 }
                 is Resource.DataError -> {
+                    (requireActivity() as TopActivity).hideProgressDialog()
                     //todo: エラーダイアログ表示
                     showErrorDialog()
                 }
@@ -87,7 +99,8 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             item.stargazersCount,
             item.watchersCount,
             item.forksCount,
-            item.openIssuesCount
+            item.openIssuesCount,
+            item.htmlUrl
         )
     }
 
@@ -137,6 +150,8 @@ class CustomAdapter(
     	val _item = getItem(position)
         (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
             _item.name
+        val iconView = holder.itemView.findViewById<ImageView>(R.id.ownerIconView)
+        GlideApp.with(holder.itemView.context).load(_item.owner.ownerIconUrl).circleCrop().into(iconView)
 
     	holder.itemView.setOnClickListener {
      		itemClickListener.itemClick(_item)

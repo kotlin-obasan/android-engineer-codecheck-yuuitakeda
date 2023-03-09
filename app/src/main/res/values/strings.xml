@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Android Engineer CodeCheck</string>
-    <string name="searchInputText_hint">GitHub のリポジトリを検索できるよー</string>
+    <string name="searchInputText_hint">キーワードを入力 (例) Kotlin</string>
     <string name="written_language">Written in %s</string>
     <string name="common_error_text">エラーが発生しました</string>
     <string name="ok">OK</string>
+    <string name="loading_text">Now Loading...</string>
+    <string name="open_tab">詳細をブラウザで見る</string>
 </resources>

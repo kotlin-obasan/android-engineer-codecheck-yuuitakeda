@@ -20,9 +20,9 @@
     </fragment>
     <fragment
         android:id="@+id/gitHubDiscriptionFragment"
-        android:name="jp.co.yumemi.android.code_check.presentation.GitHubDiscriptionFragment"
+        android:name="jp.co.yumemi.android.code_check.presentation.GitHubDescriptionFragment"
         android:label="GitHubDiscriptionFragment"
-        tools2:layout="@layout/fragment_github_discription">
+        tools2:layout="@layout/fragment_github_description">
 
         <argument
             android:name="item"

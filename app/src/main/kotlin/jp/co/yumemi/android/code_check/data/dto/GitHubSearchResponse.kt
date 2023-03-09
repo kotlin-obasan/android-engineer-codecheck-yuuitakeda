@@ -20,6 +20,7 @@ data class GitHubRepositoryInfo(
     @Json(name = "watchers_count") val watchersCount: Long,
     @Json(name = "forks_count") val forksCount: Long,
     @Json(name = "open_issues_count") val openIssuesCount: Long,
+    @Json(name = "html_url") val htmlUrl: String,
 )
 
 @Keep
