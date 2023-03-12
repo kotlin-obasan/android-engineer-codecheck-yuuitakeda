@@ -51,7 +51,7 @@ class GitHubSearchViewModel @Inject constructor(
         }
     }
 
-    fun getCurrentTime(): String {
+    private fun getCurrentTime(): String {
         // 現在時刻の取得
         val currentTime = LocalDateTime.now()
 
