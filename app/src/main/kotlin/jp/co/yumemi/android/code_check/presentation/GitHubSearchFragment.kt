@@ -38,12 +38,12 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
         binding.lifecycleOwner = viewLifecycleOwner
         fragmentGithubSearchBinding = binding
 
-        val _layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
 
-        val _dividerItemDecoration =
-            DividerItemDecoration(requireContext(), _layoutManager.orientation)
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), layoutManager.orientation)
 
-        val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
+        val adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
             override fun itemClick(item: GitHubRepositoryInfo) {
                 gotoGitHubDiscriptionFragment(item)
             }
@@ -66,9 +66,9 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             }
 
         binding.recyclerView.also {
-            it.layoutManager = _layoutManager
-            it.addItemDecoration(_dividerItemDecoration)
-            it.adapter = _adapter
+            it.layoutManager = layoutManager
+            it.addItemDecoration(dividerItemDecoration)
+            it.adapter = adapter
         }
 
         viewModel.gitHubRepositories.observe(viewLifecycleOwner) {
@@ -80,7 +80,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                     (requireActivity() as TopActivity).hideProgressDialog()
                     it.data.let { response ->
                         Log.d("response", response.toString())
-                        _adapter.submitList(response.items)
+                        adapter.submitList(response.items)
                     }
                 }
                 is Resource.DataError -> {
@@ -110,17 +110,17 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
     fun gotoGitHubDiscriptionFragment(item: GitHubRepositoryInfo) {
         translateRepositoryInfo(item)?.let {
-            val _action = GitHubSearchFragmentDirections
+            val action = GitHubSearchFragmentDirections
                 .actionGitHubSearchFragmentToGitHubDiscriptionFragment(it)
             Log.d("GitHubRepositoryInfo", item.toString())
-            findNavController().navigate(_action)
+            findNavController().navigate(action)
         } ?: showErrorDialog() //日付取得失敗
     }
 
     private fun showErrorDialog() {
-        val _action = GitHubSearchFragmentDirections
+        val action = GitHubSearchFragmentDirections
             .actionGitHubSearchFragmentToCommonErrorDialogFragment()
-        findNavController().navigate(_action)
+        findNavController().navigate(action)
     }
 }
 
@@ -147,20 +147,20 @@ class CustomAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-    	val _view = LayoutInflater.from(parent.context)
+    	val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_github_list_item, parent, false)
-    	return ViewHolder(_view)
+    	return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    	val _item = getItem(position)
+    	val item = getItem(position)
         (holder.itemView.findViewById<View>(R.id.repositoryNameView) as TextView).text =
-            _item.name
+            item.name
         val iconView = holder.itemView.findViewById<ImageView>(R.id.ownerIconView)
-        GlideApp.with(holder.itemView.context).load(_item.owner.ownerIconUrl).circleCrop().into(iconView)
+        GlideApp.with(holder.itemView.context).load(item.owner.ownerIconUrl).circleCrop().into(iconView)
 
     	holder.itemView.setOnClickListener {
-     		itemClickListener.itemClick(_item)
+     		itemClickListener.itemClick(item)
     	}
     }
 }
