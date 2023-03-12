@@ -4,8 +4,12 @@ import androidx.annotation.Keep
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * GitHubSearchResponse
+ * 検索APIのレスポンスをまとめている
+ */
 @Keep
-@JsonClass(generateAdapter = false)
+@JsonClass(generateAdapter = false) //難読化回避用にgenerateAdapter = falseに設定
 data class GitHubSearchResponse(
     val items: List<GitHubRepositoryInfo>
 )
