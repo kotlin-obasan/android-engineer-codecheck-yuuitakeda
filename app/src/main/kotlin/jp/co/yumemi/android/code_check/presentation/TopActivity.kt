@@ -6,8 +6,12 @@ package jp.co.yumemi.android.code_check.presentation
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
-import java.util.*
 
+/**
+ * TopActivity
+ * このアプリの軸となるActivity
+ * プログレスダイアログの表示・非表示を切り替えできる
+ */
 @AndroidEntryPoint
 class TopActivity : AppCompatActivity(R.layout.activity_top) {
 
@@ -19,9 +23,5 @@ class TopActivity : AppCompatActivity(R.layout.activity_top) {
 
     fun hideProgressDialog() {
         progressDialog.dismiss()
-    }
-
-    companion object {
-        lateinit var lastSearchDate: Date
     }
 }

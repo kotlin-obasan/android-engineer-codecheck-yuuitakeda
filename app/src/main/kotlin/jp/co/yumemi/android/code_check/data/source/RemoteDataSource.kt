@@ -6,6 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
 
+/**
+ * RemoteDataSource
+ * 各APIのパスなどの設定を持つインターフェース
+ */
 interface RemoteDataSource {
 
     // GitHubリポジトリを検索

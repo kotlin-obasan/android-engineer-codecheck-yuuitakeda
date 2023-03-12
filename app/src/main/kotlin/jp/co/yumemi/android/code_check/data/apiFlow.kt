@@ -8,6 +8,11 @@ import kotlinx.coroutines.flow.onStart
 import retrofit2.HttpException
 import retrofit2.Response
 
+/**
+ * apiFlow
+ * Response型をラップしてResource型を出力
+ * こうすることで例外が直接UI側に伝搬してしまうのを防ぐ
+ */
 inline fun <reified T : Any> apiFlow(crossinline call: suspend () -> Response<T>): Flow<Resource<T>> =
     flow {
         val response = call()

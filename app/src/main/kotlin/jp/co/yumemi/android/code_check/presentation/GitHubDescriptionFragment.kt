@@ -5,6 +5,7 @@ package jp.co.yumemi.android.code_check.presentation
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
@@ -15,31 +16,35 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDescriptionBinding
 import jp.co.yumemi.android.code_check.util.GlideApp
 
+/**
+ * GitHubDescriptionFragment
+ * GitHubリポジトリの詳細を閲覧できる画面
+ */
 @AndroidEntryPoint
 class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
 
     private val args: GitHubDescriptionFragmentArgs by navArgs()
 
-    private var binding: FragmentGithubDescriptionBinding? = null
-    private val _binding get() = binding!!
+    private var fragmentGithubDescriptionBinding: FragmentGithubDescriptionBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //todo: ViewModelに値を持つ
-//        Log.d("検索した日時", lastSearchDate.toString())
-
-        binding = FragmentGithubDescriptionBinding.bind(view)
+        val binding = FragmentGithubDescriptionBinding.bind(view)
+        binding.lifecycleOwner = viewLifecycleOwner
+        fragmentGithubDescriptionBinding = binding
 
         val item = args.item
 
+        Log.d("検索した日時", item.lastSearchDate)
+
         item.ownerIconUrl?.let {
-            GlideApp.with(requireContext()).load(it).circleCrop().into(_binding.ownerIconView)
-        } ?: _binding.ownerIconView.load(R.drawable.github_mark)
+            GlideApp.with(requireContext()).load(it).circleCrop().into(binding.ownerIconView)
+        } ?: binding.ownerIconView.load(R.drawable.github_mark)
 
-        _binding.nameView.text = item.name
+        binding.nameView.text = item.name
 
-        _binding.buttonOpenCustomTab.setOnClickListener {
+        binding.buttonOpenCustomTab.setOnClickListener {
             navigateToCustomTab(item.htmlUrl)
         }
 
@@ -48,12 +53,12 @@ class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description)
         item.language?.let {
             language = "Written in $it"
         }
-        _binding.languageView.text = language
+        binding.languageView.text = language
 
-        _binding.starsView.text = "${item.stargazersCount} stars"
-        _binding.watchersView.text = "${item.watchersCount} watchers"
-        _binding.forksView.text = "${item.forksCount} forks"
-        _binding.openIssuesView.text = "${item.openIssuesCount} open issues"
+        binding.starsView.text = "${item.stargazersCount} stars"
+        binding.watchersView.text = "${item.watchersCount} watchers"
+        binding.forksView.text = "${item.forksCount} forks"
+        binding.openIssuesView.text = "${item.openIssuesCount} open issues"
     }
 
     // ブラウザでURLを開く
