@@ -1,18 +1,11 @@
 package jp.co.yumemi.android.code_check.data
 
-sealed class Resource<T>(
-    val data: T? = null,
-    val errorCode: Int? = null
-) {
-    class Success<T>(data: T) : Resource<T>(data)
-    class DataError<T>(errorCode: Int) : Resource<T>(null, errorCode)
-    class Loading<T>(data: T? = null) : Resource<T>(data)
+import okhttp3.ResponseBody
 
-//    override fun toString(): String {
-//        return when (this) {
-//            is Success<*> -> "Success[data=$data]"
-//            is DataError -> "Error[exception=$errorCode]"
-//            is Loading -> "Loading"
-//        }
-//    }
+sealed class Resource<out T> {
+    class Success<out T>(val data: T) : Resource<T>()
+    class DataError(val error: Throwable) : Resource<Nothing>()
+//    class DataError<T>(errorCode: Int) : Resource<T>(null, errorCode)
+    class Loading<T>() : Resource<T>()
+
 }

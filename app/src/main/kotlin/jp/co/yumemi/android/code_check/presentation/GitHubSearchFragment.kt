@@ -75,7 +75,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                 }
                 is Resource.Success -> {
                     (requireActivity() as TopActivity).hideProgressDialog()
-                    it.data?.let { response ->
+                    it.data.let { response ->
                         Log.d("response", response.toString())
                         _adapter.submitList(response.items)
                     }

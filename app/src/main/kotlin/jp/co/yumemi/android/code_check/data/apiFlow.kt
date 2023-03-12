@@ -5,17 +5,18 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onStart
+import retrofit2.HttpException
 import retrofit2.Response
 
 inline fun <reified T : Any> apiFlow(crossinline call: suspend () -> Response<T>): Flow<Resource<T>> =
-    flow<Resource<T>> {
+    flow {
         val response = call()
         if(response.isSuccessful) {
             response.body()?.let {
                 emit(Resource.Success(data = it))
-            } ?: emit(Resource.DataError(500)) //レスポンスbodyがnullだったらサーバエラーと見なす
+            } ?: emit(Resource.DataError(HttpException(null))) //レスポンスbodyがnullならエラーと見なす
         }
-        else emit(Resource.DataError(response.code()))
+        else emit(Resource.DataError(HttpException(response)))
     }.onStart {
-        emit(Resource.Loading(data = null))
+        emit(Resource.Loading())
     }.flowOn(Dispatchers.IO)
