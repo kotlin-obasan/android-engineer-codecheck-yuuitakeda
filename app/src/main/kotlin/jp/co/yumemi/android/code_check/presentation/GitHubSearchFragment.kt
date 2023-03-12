@@ -82,10 +82,8 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                 }
                 is Resource.DataError -> {
                     (requireActivity() as TopActivity).hideProgressDialog()
-                    //todo: エラーダイアログ表示
                     showErrorDialog()
                 }
-
             }
         }
     }
