@@ -10,6 +10,16 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            // リリースビルド時ここを変更してください
+            storeFile file('/Users/takeda.yuui/Desktop/ytakeda.jks')
+            // 環境変数化するほうがいい
+            storePassword 'yumemi'
+            keyAlias 'key0'
+            keyPassword 'yumemi'
+        }
+    }
     compileSdk 31
 
     defaultConfig {
@@ -22,6 +32,7 @@ android {
 
         buildConfigField "String", "API_BASE_URL", "\"https://api.github.com/\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildFeatures.dataBinding true
