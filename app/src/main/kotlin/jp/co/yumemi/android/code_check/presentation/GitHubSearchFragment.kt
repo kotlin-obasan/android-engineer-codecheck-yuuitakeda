@@ -25,6 +25,10 @@ import jp.co.yumemi.android.code_check.presentation.GitHubSearchViewModel
 import jp.co.yumemi.android.code_check.presentation.TopActivity
 import jp.co.yumemi.android.code_check.util.GlideApp
 
+/**
+ * GitHubSearchFragment
+ * GitHubリポジトリを検索しに行く画面
+ */
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 

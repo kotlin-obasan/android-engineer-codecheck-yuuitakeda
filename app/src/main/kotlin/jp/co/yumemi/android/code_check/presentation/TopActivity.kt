@@ -7,6 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import jp.co.yumemi.android.code_check.R
 
+/**
+ * TopActivity
+ * このアプリの軸となるActivity
+ * プログレスダイアログの表示・非表示を切り替えできる
+ */
 @AndroidEntryPoint
 class TopActivity : AppCompatActivity(R.layout.activity_top) {
 

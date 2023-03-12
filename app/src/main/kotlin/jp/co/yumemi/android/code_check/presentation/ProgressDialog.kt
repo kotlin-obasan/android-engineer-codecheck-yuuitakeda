@@ -6,6 +6,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import jp.co.yumemi.android.code_check.R
 
+/**
+ * ProgressDialog
+ * 読込中に表示されるダイアログ
+ */
 class ProgressDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

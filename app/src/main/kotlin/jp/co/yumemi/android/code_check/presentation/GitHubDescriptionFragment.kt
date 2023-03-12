@@ -16,6 +16,10 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentGithubDescriptionBinding
 import jp.co.yumemi.android.code_check.util.GlideApp
 
+/**
+ * GitHubDescriptionFragment
+ * GitHubリポジトリの詳細を閲覧できる画面
+ */
 @AndroidEntryPoint
 class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
 
