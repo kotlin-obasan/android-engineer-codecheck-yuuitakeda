@@ -7,10 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AlertDialog
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
-import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.DialogCommonErrorBinding
 
 class CommonErrorDialogFragment : DialogFragment() {
