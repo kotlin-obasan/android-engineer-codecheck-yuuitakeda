@@ -15,4 +15,5 @@ data class RepositoryDescriptionData(
     val forksCount: Long,
     val openIssuesCount: Long,
     val htmlUrl: String,
+    val lastSearchDate: String,
 ) : Parcelable

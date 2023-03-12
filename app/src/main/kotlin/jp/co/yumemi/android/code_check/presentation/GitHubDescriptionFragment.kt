@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +19,6 @@ import jp.co.yumemi.android.code_check.util.GlideApp
 @AndroidEntryPoint
 class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
 
-    private val viewModel by viewModels<GitHubSearchViewModel>()
     private val args: GitHubDescriptionFragmentArgs by navArgs()
 
     private var binding: FragmentGithubDescriptionBinding? = null
@@ -29,11 +27,11 @@ class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("検索した日時", viewModel.lastSearchDate.value.toString())
-
         binding = FragmentGithubDescriptionBinding.bind(view)
 
         val item = args.item
+
+        Log.d("検索した日時", item.lastSearchDate)
 
         item.ownerIconUrl?.let {
             GlideApp.with(requireContext()).load(it).circleCrop().into(_binding.ownerIconView)

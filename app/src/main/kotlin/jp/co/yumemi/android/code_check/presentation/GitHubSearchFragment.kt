@@ -88,25 +88,30 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
         }
     }
 
-    private fun translateRepositoryInfo(item: GitHubRepositoryInfo) : RepositoryDescriptionData {
+    private fun translateRepositoryInfo(item: GitHubRepositoryInfo) : RepositoryDescriptionData? {
         Log.d("GitHubRepositoryInfo" , item.toString())
-        return RepositoryDescriptionData(
-            item.owner.ownerIconUrl,
-            item.name,
-            item.language,
-            item.stargazersCount,
-            item.watchersCount,
-            item.forksCount,
-            item.openIssuesCount,
-            item.htmlUrl
-        )
+        viewModel.lastSearchDate.value?.let {
+            return RepositoryDescriptionData(
+                item.owner.ownerIconUrl,
+                item.name,
+                item.language,
+                item.stargazersCount,
+                item.watchersCount,
+                item.forksCount,
+                item.openIssuesCount,
+                item.htmlUrl,
+                it
+            )
+        } ?: return null
     }
 
     fun gotoGitHubDiscriptionFragment(item: GitHubRepositoryInfo) {
-        val _action = GitHubSearchFragmentDirections
-            .actionGitHubSearchFragmentToGitHubDiscriptionFragment(translateRepositoryInfo(item))
-        Log.d("GitHubRepositoryInfo", item.toString())
-        findNavController().navigate(_action)
+        translateRepositoryInfo(item)?.let {
+            val _action = GitHubSearchFragmentDirections
+                .actionGitHubSearchFragmentToGitHubDiscriptionFragment(it)
+            Log.d("GitHubRepositoryInfo", item.toString())
+            findNavController().navigate(_action)
+        } ?: showErrorDialog() //日付取得失敗
     }
 
     private fun showErrorDialog() {
