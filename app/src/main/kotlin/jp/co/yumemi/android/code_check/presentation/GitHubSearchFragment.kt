@@ -28,12 +28,15 @@ import jp.co.yumemi.android.code_check.util.GlideApp
 @AndroidEntryPoint
 class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
 
+    private var fragmentGithubSearchBinding: FragmentGithubSearchBinding? = null
     private val viewModel by viewModels<GitHubSearchViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _binding = FragmentGithubSearchBinding.bind(view)
+        val binding = FragmentGithubSearchBinding.bind(view)
+        binding.lifecycleOwner = viewLifecycleOwner
+        fragmentGithubSearchBinding = binding
 
         val _layoutManager = LinearLayoutManager(requireContext())
 
@@ -46,7 +49,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
             }
         })
 
-        _binding.searchInputText
+        binding.searchInputText
             .setOnEditorActionListener { editText, action, _ ->
                 if (action == EditorInfo.IME_ACTION_SEARCH) {
                     editText.text.toString().let {
@@ -62,7 +65,7 @@ class GitHubSearchFragment: Fragment(R.layout.fragment_github_search) {
                 return@setOnEditorActionListener false
             }
 
-        _binding.recyclerView.also {
+        binding.recyclerView.also {
             it.layoutManager = _layoutManager
             it.addItemDecoration(_dividerItemDecoration)
             it.adapter = _adapter
