@@ -5,13 +5,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @Keep
-@JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = false)
 data class GitHubSearchResponse(
     val items: List<GitHubRepositoryInfo>
 )
 
 @Keep
-@JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = false)
 data class GitHubRepositoryInfo(
     @Json(name = "full_name") val name: String,
     @Json(name = "owner") val owner: Owner,
@@ -24,7 +24,7 @@ data class GitHubRepositoryInfo(
 )
 
 @Keep
-@JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = false)
 data class Owner(
     @Json(name = "avatar_url") val ownerIconUrl: String,
 )
