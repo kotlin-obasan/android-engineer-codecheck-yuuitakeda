@@ -13,6 +13,7 @@ import jp.co.yumemi.android.code_check.data.dto.GitHubSearchResponse
 import jp.co.yumemi.android.code_check.data.repository.GitHubSearchRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -23,6 +24,8 @@ import javax.inject.Inject
 class GitHubSearchViewModel @Inject constructor(
     private val gitHubSearchRepository: GitHubSearchRepository
 ): ViewModel() {
+
+    val lastSearchDate = MutableLiveData<Date>()
 
     val gitHubRepositories = MutableLiveData<Resource<GitHubSearchResponse>>()
 
@@ -36,6 +39,7 @@ class GitHubSearchViewModel @Inject constructor(
                     is Resource.Success -> {
                         Log.d("test", "${result.data.items.size} 件見つかりました")
                         gitHubRepositories.value = result
+                        lastSearchDate.value = Date()
                     }
                     is Resource.DataError -> {
                         gitHubRepositories.value = result

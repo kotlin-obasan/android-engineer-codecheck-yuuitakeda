@@ -5,9 +5,11 @@ package jp.co.yumemi.android.code_check.presentation
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import coil.load
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,6 +20,7 @@ import jp.co.yumemi.android.code_check.util.GlideApp
 @AndroidEntryPoint
 class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description) {
 
+    private val viewModel by viewModels<GitHubSearchViewModel>()
     private val args: GitHubDescriptionFragmentArgs by navArgs()
 
     private var binding: FragmentGithubDescriptionBinding? = null
@@ -26,8 +29,7 @@ class GitHubDescriptionFragment : Fragment(R.layout.fragment_github_description)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //todo: ViewModelに値を持つ
-//        Log.d("検索した日時", lastSearchDate.toString())
+        Log.d("検索した日時", viewModel.lastSearchDate.value.toString())
 
         binding = FragmentGithubDescriptionBinding.bind(view)
 

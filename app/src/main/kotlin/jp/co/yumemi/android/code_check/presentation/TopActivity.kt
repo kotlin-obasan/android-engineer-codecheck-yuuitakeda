@@ -20,8 +20,4 @@ class TopActivity : AppCompatActivity(R.layout.activity_top) {
     fun hideProgressDialog() {
         progressDialog.dismiss()
     }
-
-    companion object {
-        lateinit var lastSearchDate: Date
-    }
 }
