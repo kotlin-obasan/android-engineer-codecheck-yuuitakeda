@@ -12,5 +12,4 @@ sealed class Resource<out T> {
     class Success<out T>(val data: T) : Resource<T>()
     class DataError(val error: Throwable) : Resource<Nothing>()
     class Loading<T> : Resource<T>()
-
 }
