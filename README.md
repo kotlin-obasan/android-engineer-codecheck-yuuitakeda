@@ -1,5 +1,15 @@
 # 武田コメント
 
+## 2023/03/14 追記コメント
+- Fragment内に実装漏れがあり、Bindingがメモリリークを引き起こす可能性があることに気付きました。
+  - 期限が過ぎているため修正はしませんが、本当はこうするべきですね...。
+  ```
+    override fun onDestroy() {
+        fragmentGithubSearchBinding = null
+        super.onDestroy()
+    }  
+  ```
+
 ## 主な採択技術
 ### プロジェクト全体に関わるもの
 - MVVM
